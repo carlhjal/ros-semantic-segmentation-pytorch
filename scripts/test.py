@@ -18,9 +18,9 @@ from PIL import Image
 from tqdm import tqdm
 from mit_semseg.config import cfg
 
-colors = loadmat('data/color150.mat')['colors']
+colors = loadmat('../data/color150.mat')['colors']
 names = {}
-with open('data/object150_info.csv') as f:
+with open('../data/object150_info.csv') as f:
     reader = csv.reader(f)
     next(reader)
     for row in reader:
@@ -145,7 +145,7 @@ if __name__ == '__main__':
     )
     parser.add_argument(
         "--cfg",
-        default="config/ade20k-resnet50dilated-ppm_deepsup.yaml",
+        default="../config/ade20k-resnet50dilated-ppm_deepsup.yaml",
         metavar="FILE",
         help="path to config file",
         type=str,

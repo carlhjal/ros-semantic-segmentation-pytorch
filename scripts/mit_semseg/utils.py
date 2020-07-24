@@ -2,9 +2,36 @@ import sys
 import os
 import logging
 import re
+import csv
 import functools
 import fnmatch
 import numpy as np
+from scipy.io import loadmat
+
+
+def generate_seg_class_csv(csv_path, color_mat_path, object_info_path):
+    """Generates csv file with segmentation classes for Kimera.
+       Takes two arguments
+            csv_path => path to store csv file.
+            color_mat_path => path of mat file containing colors.
+            object_info_path => path of csv file containing object names.
+    """
+    colors = loadmat(color_mat_path)['colors']
+    names = {}
+    with open(object_info_path) as f:
+        reader = csv.reader(f)
+        next(reader)
+        for row in reader:
+            names[int(row[0])] = row[5].split(";")[0]
+
+    with open(csv_path,'w') as f:
+        f.write("name,red,green,blue,alpha,id\n")
+        for key, val in names.items():
+            r,g,b = colors[key-1]
+            f.write("{},{},{},{},255,{}\n".format(val,r,g,b,key-1))
+
+    return True
+
 
 
 def setup_logger(distributed_rank=0, filename="log.txt"):
