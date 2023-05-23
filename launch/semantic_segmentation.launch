@@ -17,9 +17,9 @@
         <param name="objects150_csv_filepath" value="$(find semantic_segmentation_ros)/data/object150_info.csv" />
         
         <!-- Path to configuration file. Change path according to encoder-decoder -->
-        <param name="cfg_filepath" value="$(find semantic_segmentation_ros)/config/ade20k-resnet50dilated-ppm_deepsup.yaml" />
+        <param name="cfg_filepath" value="$(find semantic_segmentation_ros)/config/ade20k-hrnetv2.yaml" />
         <!-- Path to model ckpt dir. -->
-        <param name="model_ckpt_dir" value="$(find semantic_segmentation_ros)/ckpt/ade20k-resnet50dilated-ppm_deepsup" />
+        <param name="model_ckpt_dir" value="$(find semantic_segmentation_ros)/ckpt/ade20k-hrnetv2-c1" />
 
 
     </node>   
